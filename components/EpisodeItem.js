@@ -7,7 +7,7 @@ function createMarkup(content) {
 export default function EpisodeItem({ episode, handleEpisodeClick }) {
   return (
     <div>
-      <h3>
+      <h3 className="text-3xl font-bold underline text-blue-600">
         <Link href={`/episode/${episode.slug}`}>{episode.title}</Link>
       </h3>
       <div dangerouslySetInnerHTML={createMarkup(episode.content)} />

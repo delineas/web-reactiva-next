@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
+import { useAudioFile } from '../hooks/useAudioFile';
 
 export default function AudioPlayer({file}) {
 
-  const [audioFile, setAudioFile] = useState(null);
+  const [audioFile, setAudioFile] = useState();
   const audioRef = useRef();
 
   useEffect(() => {

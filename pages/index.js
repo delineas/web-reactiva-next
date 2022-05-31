@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Head from 'next/head'
 import Image from 'next/image'
@@ -7,8 +7,8 @@ import styles from '../styles/Home.module.css'
 import siteMetadata from '../data/siteMetada';
 import { getFeedItems } from '../lib/feed';
 
+import AppContext from '../components/AppContext';
 import EpisodeItem from '../components/EpisodeItem';
-import AudioPlayer from "../components/AudioPlayer";
 
 export async function getStaticProps() {
 
@@ -22,10 +22,10 @@ export async function getStaticProps() {
 
 export default function Home({ allFeedItems }) {
 
-  const [audioFile, setAudioFile] = useState(null);
+  const { activeAudio, setActiveAudio } = useContext(AppContext);
 
   const handleEpisodeClick = (file) => {
-    setAudioFile(file);
+    setActiveAudio(file);
   };
 
   return (
@@ -38,8 +38,6 @@ export default function Home({ allFeedItems }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Web Reactiva</h1>
-
-        <AudioPlayer file={audioFile} />
 
         {allFeedItems.map((item) => (
           <EpisodeItem
