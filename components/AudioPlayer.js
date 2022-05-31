@@ -1,13 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
-import { useAudioFile } from '../hooks/useAudioFile';
+
+import { useAppContext } from '../state/AppContext';
 
 export default function AudioPlayer({file}) {
 
-  const [audioFile, setAudioFile] = useState();
+  //const { activeAudio, setActiveAudio } = useAppContext();
+  const [audio, setAudio] = useState(file);
+
   const audioRef = useRef();
 
   useEffect(() => {
-    setAudioFile(file);
+    setAudio(file);
     audioRef.current.pause();
     audioRef.current.load();
     audioRef.current.play();
@@ -16,7 +19,7 @@ export default function AudioPlayer({file}) {
   return (
     <div>
       <audio controls ref={audioRef}>
-        <source src={audioFile} type="audio/mpeg" />
+        <source src={audio} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>

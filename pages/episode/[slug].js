@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
-import AppContext from "../../components/AppContext";
+import { useAppContext } from "../../state/AppContext";
 import { getFeedItemsIds, getFeedItemData } from "../../lib/feed";
 
 export async function getStaticProps({ params }) {
@@ -22,14 +22,18 @@ export async function getStaticPaths() {
 }
 
 export default function Episode({ episode }) {
-  const { activeAudio, setActiveAudio } = useContext(AppContext);
+  const { activeAudio, setActiveAudio } = useAppContext();
+
   return (
     <>
       <h1>
         {episode.title} // <em>{activeAudio}</em>
       </h1>
       <Link href="/">Ir a home</Link>
-      <button onClick={() => setActiveAudio(episode.enclosure.url)}>
+      <button
+        className="px-4 py-2 font-mono font-semibold bg-lime-300 text-black border border-black shadow-offset-black"
+        onClick={() => setActiveAudio(episode.enclosure.url)}
+      >
         Play
       </button>
     </>

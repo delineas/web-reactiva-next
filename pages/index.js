@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css'
 import siteMetadata from '../data/siteMetada';
 import { getFeedItems } from '../lib/feed';
 
-import AppContext from '../components/AppContext';
+import { useAppContext } from '../state/AppContext';
 import EpisodeItem from '../components/EpisodeItem';
 
 export async function getStaticProps() {
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 
 export default function Home({ allFeedItems }) {
 
-  const { activeAudio, setActiveAudio } = useContext(AppContext);
+  const { activeAudio, setActiveAudio } = useAppContext();
 
   const handleEpisodeClick = (file) => {
     setActiveAudio(file);

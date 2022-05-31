@@ -1,18 +1,17 @@
 import '../styles/globals.css'
 import { useState } from "react";
-import AppContext from "../components/AppContext";
+import { AppWrapper } from "../state/AppContext";
 import AudioPlayer from "../components/AudioPlayer";
+import Layout from "../components/Layout";
+
 
 function MyApp({ Component, pageProps }) {
-  const [activeAudio, setActiveAudio] = useState();
-
   return (
-    <AppContext.Provider value={{ activeAudio, setActiveAudio }}>
-      <Component {...pageProps} />
-      <hr />
-      <AudioPlayer file={activeAudio} />
-      <div>Esto sale en todas las páginas</div>
-    </AppContext.Provider>
+    <AppWrapper>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AppWrapper>
   );
 }
 
